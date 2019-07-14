@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+
+        web:
+                build: ./dockerfile_apache
+                ports:
+                   - "80:80"
+                volumes:
+                   - ./html/:/var/www/html
+
+        mysql:
+                build: ./dockerfile_mysql
+                ports:
+                   - "3306:3306"
+                environment:
+                   MYSQL_ROOT_PASSWORD: root
+                volumes_from:
+                   - data
+
+        phpmyadmin:
+                image: phpmyadmin/phpmyadmin
+                environment:
+                   - PMA_ARBITRARY=1
+                   - PMA_HOST=mysql
+                   - PMA_USER=root
+                   - PMA_PASSWORD=root
+                links:
+                   - mysql
+                ports:
+                   - 8080:80
+                volumes:
+                   - "./phpmyadmin/sessions:/sessions"
+
+        httpd:
+                build: ./dockerfile_httpd
+
+        data:
+                image: busybox:1
+                volumes:
+                   - ./mysql/data:/var/lib/mysql
