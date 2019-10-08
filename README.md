@@ -21,7 +21,7 @@ PHPの勉強に必要そうなものもまとめて入れておきました。
   
     src  
 	├── dockerfile_apache  
-	├── dockerfile_httpd  
+	├── dockerfile_mysql  
 	├── html // http://localhostのドキュメントルート  
 	    └── projects // このフォルダの中に実行したいファイルを入れる  
     ├── mysql  
