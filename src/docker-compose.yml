@@ -32,9 +32,6 @@ services:
                 volumes:
                    - "./phpmyadmin/sessions:/sessions"
 
-        httpd:
-                build: ./dockerfile_httpd
-
         data:
                 image: busybox:1
                 volumes:
